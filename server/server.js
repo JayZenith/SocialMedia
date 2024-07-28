@@ -7,9 +7,10 @@ const path = require("path")
 const _dirname = path.dirname("");
 const buildPath = path.join(_dirname, "../client");
 
+const app = express();
 app.use(express.static(buildPath));
 
-const app = express();
+
 app.use(cors());
 app.use(express.json());
 
