@@ -7,7 +7,7 @@ const path = require("path")
 const _dirname = path.dirname("");
 const buildPath = path.join(_dirname, "../client");
 
-app.use(epxrss.static(buildPath));
+app.use(express.static(buildPath));
 
 const app = express();
 app.use(cors());
