@@ -14,7 +14,7 @@ app.use(express.static(buildPath));
 app.use(cors());
 app.use(express.json());
 
-app.get("/lame", function(req,res){
+app.get("/", function(req,res){
   res.sendFile(
     path.join(__dirname, "../index.html"),
     function(err){
