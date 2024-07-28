@@ -33,7 +33,7 @@ const db = mysql.createConnection({
 });
 
 db.connect((err) => {
-  if (err) throw err;
+  //if (err) throw err;
   console.log("mysql db Connected...");
   db.query("CREATE DATABASE IF NOT EXISTS mysqlDB", (err, result) => {
     if (err) throw new Error(err);
