@@ -3,6 +3,12 @@ const mysql = require("mysql");
 const cors = require("cors");
 require("dotenv").config();
 
+const path = require("path")
+const _dirname = path.dirname("");
+const buildPath = path.join(_dirname, "../client");
+
+app.use(epxrss.static(buildPath));
+
 const app = express();
 app.use(cors());
 app.use(express.json());
