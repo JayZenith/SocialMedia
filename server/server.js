@@ -36,7 +36,7 @@ const db = mysql.createConnection({
 db.connect((err) => {
   if (err) throw err;
   console.log("mysql db Connected...");
-  db.query("CREATE DATABASE IF NOT EXISTS oOs6d1ivv6fv4yOOfuser ", (err, result) => {
+  db.query("CREATE DATABASE IF NOT EXISTS o0s6d1ivv6fv4y00", (err, result) => {
     if (err) throw new Error(err);
     console.log("Database created/exists");
     db.changeUser({ database: "mysqlDB" }, (err) => {
