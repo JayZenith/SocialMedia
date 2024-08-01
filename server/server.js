@@ -35,7 +35,7 @@ const db = mysql.createConnection({
 });
 */
 
-var db = mysql.createPool({
+const db = mysql.createPool({
   connectionLimit: 10,
   host: "jj820qt5lpu6krut.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
   user: "nr5vrexgaqfa2z27",
@@ -60,6 +60,15 @@ db.connect((err) => {
 });
 */
 
+db.query("CREATE DATABASE IF NOT EXISTS o0s6d1ivv6fv4y00", (err, result) => {
+  if (err) throw new Error(err);
+  console.log("Database created/exists");
+  createTable();
+  createUsersTable();
+  createCommentTable();
+});
+
+/*
 
 db.getConnection((err) => {
   if (err) throw err;
@@ -75,6 +84,7 @@ db.getConnection((err) => {
     });
   });
 });
+*/
 
 function createTable() {
   db.query(
