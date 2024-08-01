@@ -60,6 +60,7 @@ db.connect((err) => {
 });
 */
 
+
 db.getConnection((err) => {
   if (err) throw err;
   console.log("mysql db Connected...");
