@@ -39,7 +39,7 @@ db.connect((err) => {
   db.query("CREATE DATABASE IF NOT EXISTS o0s6d1ivv6fv4y00", (err, result) => {
     if (err) throw new Error(err);
     console.log("Database created/exists");
-    db.changeUser({ database: "mysqlDB" }, (err) => {
+    db.changeUser({ database: "o0s6d1ivv6fv4y00" }, (err) => {
       if (err) throw new Error(err);
       createTable();
       createUsersTable();
