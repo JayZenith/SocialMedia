@@ -2,7 +2,7 @@ const express = require("express");
 const mysql = require("mysql");
 const cors = require("cors");
 require("dotenv").config();
-config = require("../db.config")
+//config = require("../db.config")
 
 const path = require("path")
 const _dirname = path.dirname("");
