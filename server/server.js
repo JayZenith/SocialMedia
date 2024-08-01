@@ -36,14 +36,31 @@ const db = mysql.createConnection({
 */
 
 var db = mysql.createPool({
-  connectionLimit: 10, 
+  connectionLimit: 10,
   host: "jj820qt5lpu6krut.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
   user: "nr5vrexgaqfa2z27",
   password: "xaj3exhubgjgx8pd",
   database: "o0s6d1ivv6fv4y00"
 });
 
+/*
 db.connect((err) => {
+  if (err) throw err;
+  console.log("mysql db Connected...");
+  db.query("CREATE DATABASE IF NOT EXISTS o0s6d1ivv6fv4y00", (err, result) => {
+    if (err) throw new Error(err);
+    console.log("Database created/exists");
+    db.changeUser({ database: "o0s6d1ivv6fv4y00" }, (err) => {
+      if (err) throw new Error(err);
+      createTable();
+      createUsersTable();
+      createCommentTable();
+    });
+  });
+});
+*/
+
+db.getConnection((err) => {
   if (err) throw err;
   console.log("mysql db Connected...");
   db.query("CREATE DATABASE IF NOT EXISTS o0s6d1ivv6fv4y00", (err, result) => {
