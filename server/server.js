@@ -26,7 +26,17 @@ app.get("/", function(req,res){
   )
 })
 
+/*
 const db = mysql.createConnection({
+  host: "jj820qt5lpu6krut.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
+  user: "nr5vrexgaqfa2z27",
+  password: "xaj3exhubgjgx8pd",
+  database: "o0s6d1ivv6fv4y00"
+});
+*/
+
+var db = mysql.createPool({
+  connectionLimit: 10, 
   host: "jj820qt5lpu6krut.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
   user: "nr5vrexgaqfa2z27",
   password: "xaj3exhubgjgx8pd",
