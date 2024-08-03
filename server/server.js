@@ -29,6 +29,7 @@ app.use(cors());
 // Middleware 
 app.use(express.json()); //parse json bodies in request object
 
+/*
 app.get("/", function(req,res){
   res.sendFile(
     path.join(__dirname, "../index.html"),
@@ -39,7 +40,7 @@ app.get("/", function(req,res){
     }
   )
 })
-
+*/
 
 const db = mysql.createConnection({
   host: "jj820qt5lpu6krut.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
