@@ -16,12 +16,15 @@ const app = express();
 app.use(express.static(buildPath));
 */
 
+
+
+const app = express();
+
 const path = require("path")
 const _dirname = path.dirname("");
 const buildPath = path.join(_dirname, "../client");
 app.use(express.static(buildPath));
 
-const app = express();
 app.use(cors());
 // Middleware 
 app.use(express.json()); //parse json bodies in request object
