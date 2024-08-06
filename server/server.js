@@ -12,7 +12,7 @@ const path = require("path")
 const _dirname = path.dirname("");
 const buildPath = path.join(_dirname, "../client");
 
-const app = express();
+const app = expr ess();
 app.use(express.static(buildPath));
 */
 
@@ -42,23 +42,24 @@ app.get("/", function(req,res){
 })
 */
 
+/*
 const db = mysql.createConnection({
   host: "jj820qt5lpu6krut.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
   user: "nr5vrexgaqfa2z27",
   password: "xaj3exhubgjgx8pd",
   //database: "o0s6d1ivv6fv4y00"
 });
+*/
 
 
 
-/*
+
 const db = mysql.createConnection({
   host: process.env.DB_HOST,
   user: process.env.DB_USER,
   database: process.env.DB_NAME,
   password: process.env.DB_PASSWORD,
 });
-*/
 
 
 
@@ -301,6 +302,74 @@ app.post("/signup", (req, res) => {
   res.json("success");
 });
 
+app.post("/signupTwo", (req, res) => {
+  const user = req.body;
+  db.query(`SELECT * FROM users WHERE email='${user.email}'`, (err, result) => {
+    if (err) throw new Error(err);
+    console.log(result);
+    if (!result[0]) {
+      //res.json({ error: "User dosen't exist" });
+      bcrypt.hash(user.pwd, 10).then((hash) => {
+        db.query(
+          "INSERT INTO users SET ?",
+          {
+            username: user.user,
+            password: hash,
+            email: user.email,
+          },
+          (err, result) => {
+            if (err) throw new Error(err);
+            console.log("1 user inserted");
+            console.log(result[0]);
+            db.query(`SELECT * FROM users WHERE email='${user.email}'`, (err, result) => {
+              if(err) throw new Error;
+              console.log(result[0]);
+
+              const accessToken = sign(
+                {
+                  email: user.email,
+                  id: result[0].id,
+                  username: result[0].username,
+                },
+                "importantSecret"
+              );
+              res.json({
+                token: accessToken,
+                username: result[0].username,
+                id: result[0].id,
+                email: user.email,
+              });
+
+
+            })
+            //test the result?
+            /*
+            const accessToken = sign(
+              {
+                email: user.email,
+                id: result[0].id,
+                username: result[0].username,
+              },
+              "importantSecret"
+            );
+            res.json({
+              token: accessToken,
+              username: result[0].username,
+              id: result[0].id,
+              email: user.email,
+            });
+            */
+          }
+        );
+      });
+    } else {
+      //console.log("user exist")
+      res.json({ error: "User already exists!"});
+    }
+  }); //end of Select Query
+  //res.json("success");
+});
+
 app.post("/", (req, res) => {
   const user = req.body;
   let sql = `SELECT * FROM users WHERE username='${user.username}'`;
@@ -434,10 +503,6 @@ app.put("/changepassword", validateToken, (req,res) => {
     }
   });
 })
-
-
-
-
 
 
 

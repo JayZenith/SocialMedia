@@ -1,12 +1,17 @@
-import React, {useEffect, useRef, useState, useId} from 'react'
+import React, {useEffect, useRef, useState, useId, useContext} from 'react'
 import axios from "axios"
 import { useNavigate, Link } from 'react-router-dom'
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import '../Signup.css';
+import { AuthContext } from '../helpers/AuthContext'
+
 
 
 function Signup() {
   const history=useNavigate();
+
+  const {setAuthState} = useContext(AuthContext)
+
   const userRef = useRef();
   const errRef = useRef();
   //console.log(userId);
@@ -87,13 +92,27 @@ function Signup() {
     try{
         //console.log("\n\n\n\nHere\n\n\n\n\n")
         //console.log(user)
-        await axios.post("http://localhost:3001/signup", {
+        await axios.post("http://localhost:3001/signupTwo", {
             //userId,user,email,pwd
             user, pwd, email
             //user,email,pwd
         })
         .then(res=>{
             console.log(res);
+
+            //signupTwo
+            if(res.data.error){
+                alert(res.data.error);
+            }
+            else{
+                console.log("here")
+                console.log(res.data)
+                localStorage.setItem("accessToken", res.data.token); 
+                setAuthState({username: res.data.username, id:res.data.id, email:res.data.email, status: true})
+                history("/post");
+            }
+            //
+
             /*
             if(res.data==="exist"){
                 alert("User exists")
