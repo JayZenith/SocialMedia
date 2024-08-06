@@ -33,7 +33,7 @@ function Posts() {
         });
       }
     }, []);
-
+    
     const likePost = (postId) => {
         axios.post("http://localhost:3001/likes", {
             postID: postId

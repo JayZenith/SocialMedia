@@ -64,7 +64,7 @@ function Login() {
                             <i className="bi bi-lock"></i>
                         </div>
                         <div className="remember-forgot"> 
-                            <label><input type="checkbox"/> Remember Me</label>
+                            {/*<label><input type="checkbox"/> Remember Me</label>*/}
                             <Link to="#">Forgot Password</Link>
                         </div> 
 
