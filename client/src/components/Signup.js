@@ -14,7 +14,6 @@ function Signup() {
 
   const userRef = useRef();
   const errRef = useRef();
-  const errRef2 = useRef();
   //console.log(userId);
 
 
@@ -33,8 +32,6 @@ function Signup() {
   const [errMsg, setErrMsg] = useState('');
   const [success, setSuccess] = useState(false);
 
-  const [userExist, setUserExist] = useState('');
-  
 
   const [email, setEmail]=useState('');
   const [validEmail, setValidEmail] = useState(false);
@@ -95,7 +92,7 @@ function Signup() {
     try{
         //console.log("\n\n\n\nHere\n\n\n\n\n")
         //console.log(user)
-        await axios.post("http://localhost:3001/signupThree", {
+        await axios.post("http://localhost:3001/signupTwo", {
             //userId,user,email,pwd
             user, pwd, email
             //user,email,pwd
@@ -106,7 +103,6 @@ function Signup() {
             //signupTwo
             if(res.data.error){
                 alert(res.data.error);
-                setUserExist("User Exists!")
             }
             else{
                 console.log("here")
@@ -151,8 +147,6 @@ function Signup() {
         <div className="body">
             <div className="wrapper">
                 <div className="signup">
-                    <p ref={errRef2} className={userExist ? "userExists" :
-                    "offscreen"} aria-live="assertive">{userExist}</p>
                     <form action="POST" onSubmit={handleSubmit}>
                         <p ref={errRef} className={errMsg ? "errmsg" :
                         "offscreen"} aria-live="assertive">{errMsg}</p>
